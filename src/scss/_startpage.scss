@@ -1,0 +1,60 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  background-color: black;
+
+  &__text,
+  &__btn {
+    font-size: 1srem;
+    padding: 0.5rem;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: white;
+  border: none;
+  padding: none;
+
+  &:nth-child(odd) {
+    background-color: rgb(214, 214, 214);
+  }
+
+  &__container {
+    list-style-type: none;
+    height: 50px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+
+    &__done,
+    &__text,
+    &__time,
+    &__delete {
+      padding-left: 20px;
+    }
+
+    &__delete {
+      text-align: center;
+      background-color: red;
+      color: white;
+      font-size: 2rem;
+      border: none;
+      padding: 0;
+    }
+  }
+}
