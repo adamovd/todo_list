@@ -13,26 +13,35 @@ body {
 
   &__text,
   &__btn {
-    font-size: 1srem;
+    font-size: 1rem;
     padding: 0.5rem;
   }
 }
 
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .list {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: white;
-  border: none;
-  padding: none;
-
-  &:nth-child(odd) {
-    background-color: rgb(214, 214, 214);
-  }
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(243, 243, 243);
+  width: 500px;
+  border: 0;
+  padding: 0;
 
   &__container {
     list-style-type: none;
-    height: 50px;
+    height: 3rem;
+    width: 500px;
+    background-color: rgb(239, 239, 239);
+
+    &:nth-child(odd) {
+      background-color: rgb(231, 231, 231);
+    }
   }
 
   &__item {
@@ -40,6 +49,10 @@ body {
     flex-direction: row;
     justify-content: space-between;
     list-style-type: none;
+    &.done {
+      background-color: darkgreen;
+      opacity: 0.5;
+    }
 
     &__done,
     &__text,
@@ -52,9 +65,24 @@ body {
       text-align: center;
       background-color: red;
       color: white;
-      font-size: 2rem;
+      font-size: 2.5rem;
       border: none;
       padding: 0;
+      cursor: pointer;
     }
+
+    &__time {
+      display: flex;
+      align-items: flex-end;
+      font-size: 0.5rem;
+      color: rgb(89, 89, 89);
+    }
+
+    // &__text {
+    //   &.done {
+    //     text-decoration: line-through;
+    //     color: gray;
+    //   }
+    // }
   }
 }
