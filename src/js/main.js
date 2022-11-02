@@ -51,8 +51,12 @@ function displayList (){
         done.addEventListener("click", () => {
             if(done.checked === true){
                 newItem.classList.add("done");
+                todos[i].done = true;
+                console.log(todos);
+                
             }else{
                 newItem.classList.remove("done");
+                todos[i].done = false;
             }});
         
             text.classList.add("list__item__text");
@@ -74,11 +78,16 @@ function displayList (){
             outputContainer.appendChild(todoContainer); 
             
             deleteButton.addEventListener("click", () => {
+                
                 todos.splice([i], 1);
+                displayList()
                 console.log("delete");
             });
     } 
 }
+console.log(todos);
+
+
 
 
 
