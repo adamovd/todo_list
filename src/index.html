@@ -24,9 +24,16 @@
     <title>Todo List</title>
   </head>
   <body class="container-fluid">
-    <main class="row justify-content-around">
     
-        <form class="input col-12 col-lg-8 col-xl-6 d-flex justify-content-around align-items-center g-3">
+      <div class="form-check form-switch col-12 d-flex justify-content-center">
+        <input class="toggle__btn form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
+      <div class="moon"><i class="bi bi-moon"></i></div>
+    </header>
+    <main class="row justify-content-around">
+      
+        <form class="input col-12 d-flex justify-content-around align-items-center">
           <div class="d-grid gap-2 d-md-block">
             <label for="inputText"></label>
             <input
@@ -36,25 +43,27 @@
               id="inputText"
             />
   
-            <div class="d-grid gap-2 d-block">
+            <div class="col-12 d-flex">
               <button type="submit" class="input__btn btn btn-dark">
                 Lägg till
               </button>
             </div>
-            <button class="sort btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="col-12 d-flex btn-group dropend">
+            <button class="sort__btn btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Sortera
             </button>
             <ul class="dropdown-menu sort__list">
               <li><a href="#" class="dropdown-item sort__text">Alfabetisk</a></li>
               <li><a href="#" class="dropdown-item sort__time">Skapad</a></li>
-              <li><a href="#" class="dropdown-item sort__dones">Avklarad</a></li>
+              <li><a href="#" class="dropdown-item sort__done">Avklarad</a></li>
             </ul>
-
+          </div>
         </form>
-
-        <div class="output col-12 col-lg-8 col-xl-6 d-flex justify-content-around align-items-center">
+        <aside class="aside__left col-1 col-md-3 col-lg-3 col-xl-3"></aside>
+        <div class="output col-10 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-start">
           <ul class="list list-group"></ul>
         </div>
+        <aside class="aside__right col-1 col-md-3 col-lg-3 col-xl-3"></aside>
     
     </main>
   </body>

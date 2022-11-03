@@ -1,36 +1,61 @@
 import { Todo } from "./models/todo";
+
+//hämtar alla förändringar från ls när sidan laddas
+window.addEventListener("load", () => {
+    todos = JSON.parse(localStorage.getItem("todos")).map((todo) => {
+        return new Todo(todo.text, todo.done, todo.created);
+    });
+    displayList();
+})
+
+const body = document.querySelector("body");
+const toggleBtn = document.querySelector(".toggle__btn");
 const inputText = document.querySelector(".input__text");
 const inputBtn = document.querySelector(".input__btn");
+const sortBtn = document.querySelector(".sort__btn");
+const asideContainerLeft = document.querySelector(".aside__left");
+const asideContainerRight = document.querySelector(".aside__right");
 const outputContainer = document.querySelector(".output");
 const todoContainer = document.querySelector(".list");
 const sortText = document.querySelector(".sort__text");
 const sortTime = document.querySelector(".sort__time");
 const sortDone = document.querySelector(".sort__done");
-let setTodos = [
-    new Todo("Lär dig JavaScript", false, new Date().toLocaleString()),
-    new Todo("Tro att du fattar vad du gör", false, new Date().toLocaleString()),
-    new Todo("Inse att du inte fattar någonting", false, new Date().toLocaleString())
-]
-
 let todos = [];
-for (let i = 0; i < setTodos.length; i++) {
-    todos.push(setTodos[i]); 
-}
+//Hårdkodad lista, bortkommenterad:
 
-displayList()
+// let setTodos = [
+//     new Todo("Lär dig JavaScript", false, new Date().toLocaleString()),
+//     new Todo("Tro att du fattar vad du gör", false, new Date().toLocaleString()),
+//     new Todo("Inse att du inte fattar någonting", false, new Date().toLocaleString())
+// ]
 
+// for (let i = 0; i < setTodos.length; i++) {
+//     todos.push(setTodos[i]); 
+// }
+
+// Darkmode-knapp
+toggleBtn.addEventListener("change", () => {
+        body.classList.toggle("darkmode");
+        inputBtn.classList.toggle("darkmode__btn--input");
+        sortBtn.classList.toggle("darkmode__btn--sort")
+        asideContainerLeft.classList.toggle("darkmode__aside");
+        asideContainerRight.classList.toggle("darkmode__aside");
+});
+
+// Funktion för att skapa ny todo
 
 inputBtn.addEventListener("click", addTodo);
 
 function addTodo(event){
     event.preventDefault();
-    
-    const todo = new Todo(inputText.value, false, new Date().toLocaleString()); 
+
+    const todo = new Todo(inputText.value.charAt(0).toUpperCase() + inputText.value.slice(1), false, new Date().toLocaleString()); 
     if(inputText.value === ""){
-        alert("Du måste skriva något, din jävla sopa!!");
+        alert("Du måste skriva något!");
     }else{
     todos.push(todo);
-    console.log(todos);
+
+    localStorage.setItem("todos", JSON.stringify(todos));
     
     inputText.value = "";
 
@@ -38,6 +63,7 @@ function addTodo(event){
     }
 }
 
+// funktion som skriver ut todos i lista.
 function displayList (){   
     todoContainer.innerHTML = "";
     for (let i = 0; i < todos.length; i++) {
@@ -49,23 +75,18 @@ function displayList (){
         const text = document.createElement("p");
         const time = document.createElement("small");
         const done = document.createElement("input");
+        done.checked = todos[i].done;
         const deleteButton = document.createElement("button");
         done.type = "checkbox";
-        
-        done.addEventListener("click", () => {
+
+        done.addEventListener("change", () => {
             if(done.checked === true){
-            
-                newTodo.classList.add("list-group-item-success");
-                text.classList.add("done");
                 todos[i].done = true;
-                console.log(todos);
-                
-            }else{
-                
-                newTodo.classList.remove("list-group-item-success");
-                text.classList.remove("done");
+            }else{ 
                 todos[i].done = false;
-            }});
+            }
+            localStorage.setItem("todos", JSON.stringify(todos));
+        });
         
             text.classList.add("list__item__text");
             time.classList.add("list__item__time");
@@ -85,17 +106,23 @@ function displayList (){
             
             todoContainer.appendChild(newTodo);
             
-            outputContainer.appendChild(todoContainer); 
+            outputContainer.appendChild(todoContainer);
+            
+            toggleBtn.addEventListener("change", () => {
+                newTodo.classList.toggle("darkmode__list")
+            });
             
             deleteButton.addEventListener("click", () => {
                 
                 todos.splice([i], 1);
+                localStorage.setItem("todos", JSON.stringify(todos));
                 displayList()
-                console.log("delete");
             });
         } 
     }
     
+    //sorteringsknappar
+
     sortText.addEventListener("click", () => {
         todos.sort((a, b) => (a.text > b.text) ? 1 : -1);
         displayList();
@@ -107,11 +134,12 @@ function displayList (){
     })
 
     sortDone.addEventListener("click", () => {
-        todos.sort((a, b) => (a.done !== b.done));
+        todos.sort((a, b) => b.done - a.done);
+        console.log("klick");
         displayList();
-    })
+    });
 
-console.log(todos);
+
 
 
 

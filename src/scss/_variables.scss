@@ -1,7 +1,12 @@
-//colors
+// breakpoints
+$tablet: 768px;
+$desktop: 992px;
 
+//colors
 $light-bg-color: white;
-$dark-bg-color: black;
+$dark-bg-color: rgb(18, 19, 30);
+$light-aside-color: rgb(245, 245, 245);
+$dark-aside-color: rgb(25, 26, 41);
 $light-font-color: black;
 $dark-font-color: white;
 $light-list-bg-color-first: rgb(255, 255, 255);

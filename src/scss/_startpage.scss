@@ -1,13 +1,57 @@
 @use "variables" as var;
 @use "mixins";
 
-.input {
-  height: 30vh;
+.darkmode {
+  @include mixins.darkmode;
+}
 
-  &__text,
+.darkmode__btn--input {
+  background-color: orange;
+  &:hover {
+    background-color: rgb(255, 188, 65);
+  }
+}
+
+.darkmode__btn--sort {
+  color: white;
+  border-color: white;
+}
+
+.darkmode__aside {
+  background-color: var.$dark-aside-color;
+}
+
+aside {
+  background-color: var.$light-aside-color;
+  min-height: 65vh;
+}
+
+.moon {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.input {
+  height: 25vh;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
+
+  &__text {
+    width: 300px;
+    margin-top: 5px;
+  }
+
   &__btn {
-    width: 60vw;
-    margin-top: 10px;
+    width: 300px;
+    margin-top: 5px;
+  }
+
+  .sort__btn {
+    width: 300px;
+    margin-top: 5px;
   }
 }
 
@@ -15,6 +59,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 15px;
+  margin-bottom: 15px;
+  border-left: 0.5px solid rgba(0, 0, 0, 0.3);
+  border-right: 0.5px solid rgba(0, 0, 0, 0.3);
 }
 
 .list {
@@ -25,10 +73,10 @@
   &__item {
     height: 3rem;
 
-    background-color: rgb(255, 255, 255);
+    background-color: var.$light-list-bg-color-first;
 
     &:nth-child(odd) {
-      background-color: rgb(245, 245, 245);
+      background: var.$light-list-bg-color-second;
     }
   }
 
@@ -54,7 +102,6 @@
     &__delete {
       text-align: center;
       background: none;
-      color: black;
       font-size: 1rem;
       border: none;
       margin-left: 10px;
@@ -79,9 +126,6 @@
       margin-left: 5px;
       font-size: 0.8rem;
       width: 80%;
-      &.done {
-        text-decoration: line-through;
-      }
     }
   }
 }
