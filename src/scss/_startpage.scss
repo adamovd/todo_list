@@ -1,5 +1,14 @@
+@use "variables" as var;
+@use "mixins";
+
 .input {
   height: 30vh;
+
+  &__text,
+  &__btn {
+    width: 60vw;
+    margin-top: 10px;
+  }
 }
 
 .output {
@@ -28,17 +37,12 @@
     flex-direction: row;
     justify-content: space-between;
     list-style-type: none;
-    &.done {
-      background-color: rgba(115, 191, 115, 0.501);
-      color: gray;
-    }
 
     &__done,
     &__text,
     &__time,
     &__delete {
       padding-left: 0 20px;
-      width: 25%;
     }
 
     &__done {
@@ -53,8 +57,9 @@
       color: black;
       font-size: 1rem;
       border: none;
-      padding: 0 10px;
+      margin-left: 10px;
       cursor: pointer;
+      width: 5%;
 
       &:hover {
         color: red;
@@ -66,12 +71,16 @@
       align-items: flex-end;
       font-size: 0.5rem;
       color: rgb(89, 89, 89);
+      width: 10%;
     }
 
     &__text {
+      margin-top: 5px;
+      margin-left: 5px;
+      font-size: 0.8rem;
+      width: 80%;
       &.done {
         text-decoration: line-through;
-        color: gray;
       }
     }
   }

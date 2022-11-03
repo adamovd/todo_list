@@ -1,4 +1,4 @@
-import { Todo } from "./todo";
+import { Todo } from "./models/todo";
 const inputText = document.querySelector(".input__text");
 const inputBtn = document.querySelector(".input__btn");
 const outputContainer = document.querySelector(".output");
@@ -7,9 +7,9 @@ const sortText = document.querySelector(".sort__text");
 const sortTime = document.querySelector(".sort__time");
 const sortDone = document.querySelector(".sort__done");
 let setTodos = [
-    new Todo("Städa", false, new Date().toLocaleString()),
-    new Todo("Diska", false, new Date().toLocaleString()),
-    new Todo("Äta", false, new Date().toLocaleString())
+    new Todo("Lär dig JavaScript", false, new Date().toLocaleString()),
+    new Todo("Tro att du fattar vad du gör", false, new Date().toLocaleString()),
+    new Todo("Inse att du inte fattar någonting", false, new Date().toLocaleString())
 ]
 
 let todos = [];
@@ -54,12 +54,16 @@ function displayList (){
         
         done.addEventListener("click", () => {
             if(done.checked === true){
-                newTodo.classList.add("done");
+            
+                newTodo.classList.add("list-group-item-success");
+                text.classList.add("done");
                 todos[i].done = true;
                 console.log(todos);
                 
             }else{
-                newTodo.classList.remove("done");
+                
+                newTodo.classList.remove("list-group-item-success");
+                text.classList.remove("done");
                 todos[i].done = false;
             }});
         
@@ -72,7 +76,7 @@ function displayList (){
             
             text.innerHTML = todos[i].text;
             time.innerHTML = todos[i].created;
-            deleteButton.innerHTML = `<i class="bi bi-trash-fill"></i>`;
+            deleteButton.innerHTML = `<i class="bi bi-trash"></i>`;
             
             newTodo.appendChild(done);
             newTodo.appendChild(text);
@@ -103,7 +107,7 @@ function displayList (){
     })
 
     sortDone.addEventListener("click", () => {
-        todos.sort((a, b) => (a.done !== b.done) ? 1 : -1);
+        todos.sort((a, b) => (a.done !== b.done));
         displayList();
     })
 
