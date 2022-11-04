@@ -111,6 +111,7 @@ function displayList (){
             done.classList.add("list__item__done");
             done.classList.add("form-check-input");
             done.classList.add("me-1");
+            done.classList.add("checkbox");
             deleteButton.classList.add("list__item__delete");
             
             text.innerHTML = todos[i].text;
