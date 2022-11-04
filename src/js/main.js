@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
 
 
 const body = document.querySelector("body");
-const inputContainer = document.querySelector(".input");
+const toggleBtnIcon = document.getElementById("icon");
 const toggleBtn = document.querySelector(".toggle__btn");
 const inputText = document.querySelector(".input__text");
 const inputBtn = document.querySelector(".input__btn");
@@ -42,7 +42,14 @@ toggleBtn.addEventListener("change", () => {
         sortBtn.classList.toggle("darkmode__btn--sort")
         asideContainerLeft.classList.toggle("darkmode__aside");
         asideContainerRight.classList.toggle("darkmode__aside");
-        inputContainer.classList.toggle("darkmode__lines");
+
+        if(toggleBtn.checked === true) {
+            toggleBtnIcon.classList.add("bi-moon");
+            toggleBtnIcon.classList.remove("bi-brightness-low-fill");
+        }else{
+            toggleBtnIcon.classList.remove("bi-moon");
+            toggleBtnIcon.classList.add("bi-brightness-low-fill");
+        }
 });
 
 // Funktion för att skapa ny todo
@@ -78,18 +85,26 @@ function displayList (){
         const text = document.createElement("p");
         const time = document.createElement("small");
         const done = document.createElement("input");
+        done.type = "checkbox";
         done.checked = todos[i].done;
         const deleteButton = document.createElement("button");
-        done.type = "checkbox";
 
         done.addEventListener("change", () => {
             if(done.checked === true){
                 todos[i].done = true;
+                text.classList.add("done");
             }else{ 
                 todos[i].done = false;
+                text.classList.remove("done");
             }
             localStorage.setItem("todos", JSON.stringify(todos));
         });
+
+        if (done.checked === true) {
+            text.classList.add("done");
+        }else{
+            text.classList.remove("done");
+        }
         
             text.classList.add("list__item__text");
             time.classList.add("list__item__time");
@@ -140,7 +155,6 @@ function displayList (){
     //sorterar på iklickad som klar
     sortDone.addEventListener("click", () => {
         todos.sort((a, b) => b.done - a.done);
-        console.log("klick");
         displayList();
     });
 
