@@ -21,37 +21,61 @@
   background-color: var.$dark-aside-color;
 }
 
+.darkmode__line {
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
+}
+
+body {
+  max-width: 100vw;
+}
+
+header {
+  height: 10vh;
+}
+
 aside {
   background-color: var.$light-aside-color;
   min-height: 65vh;
+  @include mixins.for-size(tablet) {
+    min-height: 70vh;
+  }
+  @include mixins.for-size(laptop) {
+    min-height: 70vh;
+  }
 }
 
 .moon {
   font-size: 1.5rem;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .input {
   height: 25vh;
-  display: flex;
-  flex-direction: row;
+  padding-bottom: 15px;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
 
   &__text {
-    width: 300px;
+    width: 250px;
     margin-top: 5px;
   }
 
   &__btn {
-    width: 300px;
+    width: 250px;
     margin-top: 5px;
   }
 
   .sort__btn {
-    width: 300px;
+    width: 250px;
     margin-top: 5px;
+  }
+
+  @include mixins.for-size(tablet) {
+    min-height: 20vh;
+  }
+  @include mixins.for-size(laptop) {
+    min-height: 20vh;
   }
 }
 
@@ -71,6 +95,10 @@ aside {
   padding: 0;
 
   &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
     height: 3rem;
 
     background-color: var.$light-list-bg-color-first;
@@ -78,13 +106,6 @@ aside {
     &:nth-child(odd) {
       background: var.$light-list-bg-color-second;
     }
-  }
-
-  &__item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    list-style-type: none;
 
     &__done,
     &__text,
@@ -117,6 +138,7 @@ aside {
       display: flex;
       align-items: flex-end;
       font-size: 0.5rem;
+      margin-right: 10px;
       color: rgb(89, 89, 89);
       width: 10%;
     }

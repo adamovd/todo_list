@@ -8,7 +8,9 @@ window.addEventListener("load", () => {
     displayList();
 })
 
+
 const body = document.querySelector("body");
+const inputContainer = document.querySelector(".input");
 const toggleBtn = document.querySelector(".toggle__btn");
 const inputText = document.querySelector(".input__text");
 const inputBtn = document.querySelector(".input__btn");
@@ -40,6 +42,7 @@ toggleBtn.addEventListener("change", () => {
         sortBtn.classList.toggle("darkmode__btn--sort")
         asideContainerLeft.classList.toggle("darkmode__aside");
         asideContainerRight.classList.toggle("darkmode__aside");
+        inputContainer.classList.toggle("darkmode__lines");
 });
 
 // Funktion för att skapa ny todo
@@ -123,16 +126,18 @@ function displayList (){
     
     //sorteringsknappar
 
+    //sorterar i bokstavsordning
     sortText.addEventListener("click", () => {
         todos.sort((a, b) => (a.text > b.text) ? 1 : -1);
         displayList();
     })
 
+    //sorterar så att det senaste objektet hamnar högst upp, ska försöka lösa på ett bättre sätt
     sortTime.addEventListener("click", () => {
         todos.reverse();
         displayList();
     })
-
+    //sorterar på iklickad som klar
     sortDone.addEventListener("click", () => {
         todos.sort((a, b) => b.done - a.done);
         console.log("klick");
