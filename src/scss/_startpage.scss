@@ -36,12 +36,6 @@ header {
 aside {
   background-color: var.$light-aside-color;
   min-height: 65vh;
-  @include mixins.for-size(tablet) {
-    min-height: 70vh;
-  }
-  @include mixins.for-size(laptop) {
-    min-height: 70vh;
-  }
 }
 
 .moon {
