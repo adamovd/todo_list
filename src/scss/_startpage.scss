@@ -1,6 +1,8 @@
 @use "variables" as var;
 @use "mixins";
 
+//ordna checkbox bredd i olika breakpoints
+
 .darkmode {
   @include mixins.darkmode;
 }
@@ -31,6 +33,10 @@ body {
 
 header {
   height: 10vh;
+
+  .toggle__btn {
+    margin-top: 35px;
+  }
 }
 
 aside {
@@ -92,7 +98,7 @@ aside {
   &__item {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style-type: none;
     height: 3rem;
 
@@ -109,13 +115,14 @@ aside {
       padding-left: 0 20px;
     }
 
-    &__done {
-      height: 25px;
-      width: 25px;
-      cursor: pointer;
-    }
     .checkbox {
+      height: 25px;
+      width: 30px;
+      cursor: pointer;
       border-radius: 50%;
+      @include mixins.for-size(desktop) {
+        width: 25px;
+      }
     }
 
     &__delete {
